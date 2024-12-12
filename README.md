@@ -1,7 +1,10 @@
 # my_gazebo_tutorials
-ENPM700 ROS2 Programming Assignment
 
-The project implements a simple walker algorithm similar to a Roomba robot vacuum cleaner. The robot moves forward until it encounters an obstacle (without colliding), then rotates in place until the path ahead is clear. After that, it moves forward again and repeats the process. Each time the robot rotates, it alternates between rotating clockwise and counterclockwise.
+#### Course: ENPM700 ( Software development for Robotics )
+
+#### ROS2 Programming assignment
+
+The project implements a basic walker algorithm akin to a Roomba robot vacuum. The robot moves forward until it detects an obstacle, avoiding collisions, then rotates on the spot until it finds a clear path. Once the path is clear, it resumes moving forward and repeats this cycle. The robot alternates its rotation direction between clockwise and counterclockwise with each turn.
 
 ## Directory Structure
 ```
@@ -14,8 +17,8 @@ my_gazebo_tutorials/
 │   ├── walker.cpp
 ├── results/
 │   └── bag_list/
-│   └── output.png
-│   └── term_output.png
+│   └── output_spawn.png
+│   └── terminal_output.png
 │   └── clang-tidy.txt
 │   └── cpplint.txt
 ├── .gitignore
@@ -27,24 +30,33 @@ my_gazebo_tutorials/
 
 ### `walker.hpp`
 
-`walker.hpp` is the header file for the walker node. It contains the class definition and member functions declarations for the walker robot's behavior. This file is crucial for defining the interface and functionalities that will be implemented in `walker.cpp`.
+`walker.hpp` is the header file for the walker node. It contains the class definition and member functions declarations for the walker robot's behavior. It plays a critical role in defining the interface and functionalities that are implemented in walker.cpp.
 
 Key components of `walker.hpp`:
 - Class definition for the walker robot.
 - Member variables for storing sensor data and robot state.
 - Member functions for processing sensor data and controlling the robot's movements.
 
-This file ensures that the implementation in `walker.cpp` has a clear and organized structure to follow.
+This file ensures that the implementation in walker.cpp follows a well-structured and organized framework.
 
 ### `walker.cpp`
 
-`walker.cpp` is the implementation file for the Walker ROS2 node. It defines the behavior of the robot, including moving forward and avoiding obstacles using a state machine approach. It only considers the input of the lidar scan from a set angle range of 0-40 degrees and confirms an obstacle. The behaviour of the walker robot is decided upon the detection of obstacle as in to move clockwise or anti-clockwise.
+The walker.cpp file contains the implementation of the Walker ROS2 node, which controls the robot's movement and obstacle avoidance behavior using a state machine approach. The robot processes lidar scan data within a specific angle range (0-40 degrees) to detect obstacles and determine its actions.
+
+Key Features:
+
+- Implements forward movement and obstacle avoidance logic.
+- Uses lidar input to detect obstacles in the specified angle range.
+- Decides the robot's turning direction (clockwise or counterclockwise) based on obstacle detection.
+
+
+This file defines the core functionality of the walker robot, enabling it to navigate while avoiding collisions effectively.
 
 ## ROS2 Dependencies
 Make sure to install the ROS2 Humble version or the appropriate ROS2 distribution on your system and source the ROS2 setup script.
 - **rclcpp**: ROS Client Library for C++.
 - **std_msgs**: Standard message types for ROS, such as strings and integers.
-- Other relevant dependencies (for building ROS2 nodes).
+- Additional dependencies necessary for building ROS2 nodes.
 
 If you are not sure what packages you have or require everything from the start. Run the following command.
 
@@ -137,11 +149,11 @@ This command runs `cpplint` on all `.cpp` files in the `src` and `test` director
 ## Results
 - Sample output of the gazebo simulation
 
-![output](results/output_spawn.png)
+![output_spawn](results/output_spawn.png)
 
 - Terminal Output of the walker launch file
 
-![term_output](results/terminal_output.png)
+![terminal_output](results/terminal_output.png)
 
 
 ## Additional Notes
